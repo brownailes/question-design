@@ -637,29 +637,6 @@
           <label for="subject">교과</label>
           <select id="subject">
             <option value="">선택</option>
-            <optgroup label="초등 1~2학년군">
-              <option value="바른 생활">바른 생활</option>
-              <option value="슬기로운 생활">슬기로운 생활</option>
-              <option value="즐거운 생활">즐거운 생활</option>
-            </optgroup>
-            <optgroup label="교과">
-              <option value="국어">국어</option>
-              <option value="사회">사회</option>
-              <option value="수학">수학</option>
-              <option value="과학">과학</option>
-              <option value="실과">실과</option>
-              <option value="진로와 직업">진로와 직업</option>
-              <option value="체육">체육</option>
-              <option value="음악">음악</option>
-              <option value="미술">미술</option>
-              <option value="정보통신활용">정보통신활용</option>
-              <option value="생활영어">생활영어</option>
-              <option value="보건">보건</option>
-            </optgroup>
-            <optgroup label="기타">
-              <option value="창의적 체험활동">창의적 체험활동</option>
-              <option value="일상생활 활동">일상생활 활동</option>
-            </optgroup>
           </select>
         </div>
 
@@ -667,11 +644,6 @@
           <label for="grade">학년군</label>
           <select id="grade">
             <option value="">선택</option>
-            <option value="초등학교 1~2학년군">초 1~2학년군</option>
-            <option value="초등학교 3~4학년군">초 3~4학년군</option>
-            <option value="초등학교 5~6학년군">초 5~6학년군</option>
-            <option value="중학교 1~3학년군">중 1~3학년군</option>
-            <option value="고등학교 1~3학년군">고 1~3학년군</option>
           </select>
         </div>
       </div>
@@ -683,13 +655,89 @@
         </div>
       </div>
 
-      <button class="generate-btn" id="generateBtn" onclick="generate()">
+      <button class="generate-btn" id="generateBtn" onclick="generate()" disabled>
         <span class="spinner"></span>
         <span class="btn-text">질문 디자인 생성하기</span>
         <span class="btn-loading-text">질문을 설계하고 있습니다…</span>
       </button>
 
       <div class="error-msg" id="errorMsg"></div>
+
+    <script>
+    // ═══════════════════════════════════════
+    // 교과 ↔ 학년군 양방향 연동
+    // ═══════════════════════════════════════
+    const CURRICULUM = {
+      '초등학교 1~2학년군': ['바른 생활','슬기로운 생활','즐거운 생활','창의적 체험활동','일상생활 활동'],
+      '초등학교 3~4학년군': ['국어','사회','수학','과학','체육','음악','미술','정보통신활용','생활영어','보건','창의적 체험활동','일상생활 활동'],
+      '초등학교 5~6학년군': ['국어','사회','수학','과학','실과','체육','음악','미술','정보통신활용','생활영어','보건','창의적 체험활동','일상생활 활동'],
+      '중학교 1~3학년군':   ['국어','사회','수학','과학','실과','진로와 직업','체육','음악','미술','정보통신활용','생활영어','보건','창의적 체험활동','일상생활 활동'],
+      '고등학교 1~3학년군': ['국어','사회','수학','과학','진로와 직업','체육','음악','미술','정보통신활용','생활영어','보건','창의적 체험활동','일상생활 활동']
+    };
+    const GRADE_LABELS = {
+      '초등학교 1~2학년군':'초 1~2학년군',
+      '초등학교 3~4학년군':'초 3~4학년군',
+      '초등학교 5~6학년군':'초 5~6학년군',
+      '중학교 1~3학년군':'중 1~3학년군',
+      '고등학교 1~3학년군':'고 1~3학년군'
+    };
+
+    const subjectEl = document.getElementById('subject');
+    const gradeEl   = document.getElementById('grade');
+    const genBtn    = document.getElementById('generateBtn');
+    const topicEl   = document.getElementById('topic');
+
+    // 전체 교과 목록 (순서 유지)
+    const ALL_SUBJECTS = [...new Set(Object.values(CURRICULUM).flat())];
+    const ALL_GRADES   = Object.keys(CURRICULUM);
+
+    function populateSubjects(filterGrade) {
+      const prev = subjectEl.value;
+      subjectEl.innerHTML = '<option value="">선택</option>';
+      const list = filterGrade ? CURRICULUM[filterGrade] : ALL_SUBJECTS;
+      list.forEach(s => {
+        const o = document.createElement('option');
+        o.value = s; o.textContent = s;
+        subjectEl.appendChild(o);
+      });
+      if (list.includes(prev)) subjectEl.value = prev;
+      else subjectEl.value = '';
+    }
+
+    function populateGrades(filterSubject) {
+      const prev = gradeEl.value;
+      gradeEl.innerHTML = '<option value="">선택</option>';
+      const list = filterSubject
+        ? ALL_GRADES.filter(g => CURRICULUM[g].includes(filterSubject))
+        : ALL_GRADES;
+      list.forEach(g => {
+        const o = document.createElement('option');
+        o.value = g; o.textContent = GRADE_LABELS[g];
+        gradeEl.appendChild(o);
+      });
+      if (list.includes(prev)) gradeEl.value = prev;
+      else gradeEl.value = '';
+    }
+
+    function updateBtn() {
+      genBtn.disabled = !(subjectEl.value && gradeEl.value);
+    }
+
+    subjectEl.addEventListener('change', () => {
+      populateGrades(subjectEl.value || null);
+      updateBtn();
+    });
+    gradeEl.addEventListener('change', () => {
+      populateSubjects(gradeEl.value || null);
+      updateBtn();
+    });
+    topicEl.addEventListener('input', updateBtn);
+
+    // 초기 렌더
+    populateSubjects(null);
+    populateGrades(null);
+    updateBtn();
+    </script>
     </section>
 
     <div class="divider"></div>
