@@ -29,270 +29,198 @@
     "url": "https://question.juailes.com",
     "applicationCategory": "EducationalApplication",
     "operatingSystem": "Web",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "KRW"
-    },
-    "author": {
-      "@type": "Person",
-      "name": "엄주익"
-    }
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+    "author": { "@type": "Person", "name": "엄주익" }
   }
   </script>
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts — Apple-like Gothic -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
+    /* ═══════════════════════════════════════
+       Apple-inspired Design System
+       ═══════════════════════════════════════ */
     :root {
-      --bg: #fafbfc;
+      --bg: #ffffff;
+      --bg-secondary: #f5f5f7;
       --surface: #ffffff;
-      --surface-hover: #f8f9fb;
-      --border: #e2e8f0;
-      --border-focus: #6366f1;
-      --text: #1e293b;
-      --text-secondary: #64748b;
-      --text-muted: #94a3b8;
-      --primary: #6366f1;
-      --primary-light: #eef2ff;
-      --primary-hover: #4f46e5;
-      --accent-essential: #7c3aed;
-      --accent-opening: #059669;
-      --accent-develop: #2563eb;
-      --accent-closing: #dc2626;
-      --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
-      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
-      --shadow-lg: 0 10px 40px rgba(0,0,0,0.1);
+      --border: #d2d2d7;
+      --border-light: #e8e8ed;
+      --text-primary: #1d1d1f;
+      --text-secondary: #6e6e73;
+      --text-tertiary: #86868b;
+      --accent: #0071e3;
+      --accent-hover: #0077ED;
+      --accent-bg: rgba(0,113,227,0.06);
+      --essential-color: #1d1d1f;
+      --opening-color: #0071e3;
+      --develop-color: #34c759;
+      --closing-color: #ff6723;
+      --shadow-subtle: 0 0 0 0.5px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-card: 0 2px 12px rgba(0,0,0,0.06), 0 0 0 0.5px rgba(0,0,0,0.04);
+      --shadow-hover: 0 4px 24px rgba(0,0,0,0.08), 0 0 0 0.5px rgba(0,0,0,0.04);
       --radius: 12px;
-      --radius-lg: 16px;
-      --transition: all 0.2s ease;
+      --radius-lg: 18px;
+      --transition: all 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'Noto Sans KR', 'Inter', -apple-system, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif;
       background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-      min-height: 100vh;
+      color: var(--text-primary);
+      line-height: 1.47059;
+      letter-spacing: -0.022em;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Hero Header */
+    /* ═══════ Hero — Apple Product Page Style ═══════ */
     .hero {
-      background: var(--gradient-hero);
-      padding: 48px 24px 56px;
+      padding: 80px 24px 64px;
       text-align: center;
-      position: relative;
-      overflow: hidden;
+      background: var(--bg);
     }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
-      animation: float 8s ease-in-out infinite;
-    }
-    @keyframes float {
-      0%, 100% { transform: translate(0, 0); }
-      50% { transform: translate(20px, -20px); }
+    .hero .overline {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 12px;
     }
     .hero h1 {
-      font-size: 2rem;
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 8px;
-      position: relative;
-      z-index: 1;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      color: var(--text-primary);
+      margin-bottom: 16px;
     }
     .hero .subtitle {
-      font-size: 1rem;
-      color: rgba(255,255,255,0.85);
-      position: relative;
-      z-index: 1;
+      font-size: 1.2rem;
       font-weight: 400;
-    }
-    .hero .badge {
-      display: inline-block;
-      background: rgba(255,255,255,0.2);
-      backdrop-filter: blur(10px);
-      color: #fff;
-      padding: 6px 16px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      margin-bottom: 16px;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Main Container */
-    .container {
-      max-width: 720px;
+      color: var(--text-secondary);
+      max-width: 480px;
       margin: 0 auto;
-      padding: 0 20px;
+      line-height: 1.5;
     }
 
-    /* Input Card */
-    .input-card {
-      background: var(--surface);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-lg);
-      padding: 32px;
-      margin: -32px auto 24px;
-      position: relative;
-      z-index: 2;
-    }
-    .input-card h2 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    /* ═══════ Container ═══════ */
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px;
     }
 
-    .form-grid {
+    /* ═══════ Section Divider ═══════ */
+    .divider {
+      height: 1px;
+      background: var(--border-light);
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* ═══════ Input Section ═══════ */
+    .input-section {
+      padding: 48px 0;
+    }
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 24px;
+    }
+
+    .form-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
       margin-bottom: 16px;
     }
-    @media (max-width: 540px) {
-      .form-grid { grid-template-columns: 1fr; }
+    @media (max-width: 520px) {
+      .form-row { grid-template-columns: 1fr; }
     }
 
-    .form-group { display: flex; flex-direction: column; gap: 6px; }
-    .form-group label {
-      font-size: 0.85rem;
-      font-weight: 600;
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field.full { grid-column: 1 / -1; }
+
+    .field label {
+      font-size: 0.82rem;
+      font-weight: 500;
       color: var(--text-secondary);
     }
-    .form-group select,
-    .form-group input[type="text"] {
-      padding: 12px 14px;
-      border: 1.5px solid var(--border);
+
+    .field select,
+    .field input[type="text"] {
+      padding: 11px 14px;
+      border: 1px solid var(--border);
       border-radius: 10px;
       font-size: 0.95rem;
       font-family: inherit;
       background: var(--bg);
-      color: var(--text);
+      color: var(--text-primary);
       transition: var(--transition);
       appearance: none;
       -webkit-appearance: none;
     }
-    .form-group select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2364748b' d='M6 8.5L1 3.5h10z'/%3E%3C/svg%3E");
+    .field select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath fill='none' stroke='%2386868b' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 14px center;
       padding-right: 36px;
     }
-    .form-group select:focus,
-    .form-group input[type="text"]:focus {
+    .field select:focus,
+    .field input[type="text"]:focus {
       outline: none;
-      border-color: var(--border-focus);
-      box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(0,113,227,0.15);
     }
 
-    .topic-group {
-      grid-column: 1 / -1;
-    }
-
-    /* API Key Section */
-    .api-section {
-      margin-top: 16px;
-      padding-top: 16px;
-      border-top: 1px solid var(--border);
-    }
-    .api-toggle {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      user-select: none;
-      margin-bottom: 8px;
-    }
-    .api-toggle:hover { color: var(--text-secondary); }
-    .api-toggle .arrow { transition: var(--transition); font-size: 0.7rem; }
-    .api-toggle .arrow.open { transform: rotate(90deg); }
-    .api-input-wrap {
-      display: none;
-      margin-top: 8px;
-    }
-    .api-input-wrap.show { display: block; }
-    .api-input-wrap input {
-      width: 100%;
-      padding: 10px 14px;
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      font-size: 0.85rem;
-      font-family: inherit;
-      background: var(--bg);
-      color: var(--text);
-      transition: var(--transition);
-    }
-    .api-input-wrap input:focus {
-      outline: none;
-      border-color: var(--border-focus);
-      box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
-    }
-    .api-help {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      margin-top: 6px;
-      line-height: 1.5;
-    }
-    .api-help a {
-      color: var(--primary);
-      text-decoration: none;
-    }
-
-    /* Generate Button */
+    /* ═══════ Generate Button ═══════ */
     .generate-btn {
       width: 100%;
       padding: 14px;
-      background: var(--gradient-hero);
+      background: var(--accent);
       color: #fff;
       border: none;
-      border-radius: 10px;
+      border-radius: 980px;
       font-size: 1rem;
-      font-weight: 700;
+      font-weight: 500;
       font-family: inherit;
+      letter-spacing: -0.01em;
       cursor: pointer;
       transition: var(--transition);
-      margin-top: 20px;
+      margin-top: 24px;
       position: relative;
-      overflow: hidden;
     }
     .generate-btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(99,102,241,0.35);
+      background: var(--accent-hover);
     }
-    .generate-btn:active { transform: translateY(0); }
+    .generate-btn:active {
+      transform: scale(0.98);
+    }
     .generate-btn:disabled {
-      opacity: 0.6;
+      opacity: 0.42;
       cursor: not-allowed;
       transform: none;
-      box-shadow: none;
     }
     .generate-btn .spinner {
       display: none;
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
       border: 2px solid rgba(255,255,255,0.3);
       border-top-color: #fff;
       border-radius: 50%;
-      animation: spin 0.6s linear infinite;
+      animation: spin 0.7s linear infinite;
       margin-right: 8px;
+      vertical-align: middle;
     }
     .generate-btn.loading .spinner { display: inline-block; }
     .generate-btn.loading .btn-text { display: none; }
@@ -300,10 +228,20 @@
     .btn-loading-text { display: none; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* Result Area */
+    /* ═══════ Error ═══════ */
+    .error-msg {
+      display: none;
+      color: #ff3b30;
+      font-size: 0.85rem;
+      margin-top: 10px;
+      text-align: center;
+    }
+    .error-msg.show { display: block; }
+
+    /* ═══════ Result Area ═══════ */
     .result-area {
       display: none;
-      margin-bottom: 40px;
+      padding: 48px 0 32px;
     }
     .result-area.show { display: block; }
 
@@ -311,150 +249,159 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 16px;
+      margin-bottom: 28px;
     }
     .result-header h2 {
-      font-size: 1.1rem;
+      font-size: 1.4rem;
       font-weight: 700;
+      letter-spacing: -0.03em;
     }
     .copy-btn {
-      padding: 8px 16px;
-      background: var(--surface);
-      border: 1.5px solid var(--border);
-      border-radius: 8px;
+      padding: 7px 16px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 980px;
       font-size: 0.8rem;
       font-weight: 500;
       font-family: inherit;
       cursor: pointer;
-      color: var(--text-secondary);
+      color: var(--accent);
       transition: var(--transition);
     }
     .copy-btn:hover {
-      background: var(--primary-light);
-      border-color: var(--primary);
-      color: var(--primary);
+      background: var(--accent-bg);
     }
 
-    /* Question Cards */
-    .question-card {
-      background: var(--surface);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-sm);
-      padding: 24px;
-      margin-bottom: 16px;
-      border-left: 4px solid var(--border);
-      transition: var(--transition);
-      animation: fadeInUp 0.4s ease forwards;
-      opacity: 0;
-    }
-    .question-card:hover {
-      box-shadow: var(--shadow-md);
-      transform: translateY(-2px);
-    }
-    .question-card:nth-child(1) { border-left-color: var(--accent-essential); animation-delay: 0.1s; }
-    .question-card:nth-child(2) { border-left-color: var(--accent-opening); animation-delay: 0.2s; }
-    .question-card:nth-child(3) { border-left-color: var(--accent-develop); animation-delay: 0.3s; }
-    .question-card:nth-child(4) { border-left-color: var(--accent-closing); animation-delay: 0.4s; }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .question-card .card-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 8px;
-    }
-    .question-card:nth-child(1) .card-label { color: var(--accent-essential); }
-    .question-card:nth-child(2) .card-label { color: var(--accent-opening); }
-    .question-card:nth-child(3) .card-label { color: var(--accent-develop); }
-    .question-card:nth-child(4) .card-label { color: var(--accent-closing); }
-
-    .question-card .question-text {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-      line-height: 1.6;
-      color: var(--text);
-    }
-    .question-card .intent {
-      font-size: 0.88rem;
+    /* ═══════ Intro Text ═══════ */
+    .intro-text {
+      padding: 24px 0;
+      font-size: 1rem;
       color: var(--text-secondary);
       line-height: 1.7;
-      padding: 12px 16px;
-      background: var(--bg);
-      border-radius: 8px;
+      animation: fadeIn 0.5s ease forwards;
     }
-    .question-card .intent strong {
-      color: var(--text);
+    .intro-text strong {
+      color: var(--text-primary);
+      font-weight: 600;
     }
 
-    /* Intro Card */
-    .intro-card {
-      background: var(--surface);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-sm);
-      padding: 24px;
+    /* ═══════ Question Cards ═══════ */
+    .question-card {
+      background: var(--bg-secondary);
+      border-radius: var(--radius-lg);
+      padding: 28px;
       margin-bottom: 16px;
-      animation: fadeInUp 0.3s ease forwards;
-      opacity: 0;
-    }
-    .intro-card p {
-      font-size: 0.92rem;
-      color: var(--text-secondary);
-      line-height: 1.8;
-    }
-
-    /* Reference Card */
-    .ref-card {
-      background: var(--primary-light);
-      border-radius: var(--radius);
-      padding: 16px 20px;
-      margin-top: 8px;
+      transition: var(--transition);
       animation: fadeInUp 0.5s ease forwards;
-      animation-delay: 0.5s;
       opacity: 0;
     }
-    .ref-card p {
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
+    .question-card:nth-child(2) { animation-delay: 0.08s; }
+    .question-card:nth-child(3) { animation-delay: 0.16s; }
+    .question-card:nth-child(4) { animation-delay: 0.24s; }
+    .question-card:nth-child(5) { animation-delay: 0.32s; }
+
+    .question-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-2px);
     }
 
-    /* Error */
-    .error-msg {
-      display: none;
-      background: #fef2f2;
-      border: 1px solid #fecaca;
-      color: #dc2626;
-      padding: 12px 16px;
-      border-radius: 10px;
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .card-step {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .card-step .step-number {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .card-step .step-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    /* Step colors */
+    .step-essential .step-number { background: var(--essential-color); }
+    .step-essential .step-label { color: var(--essential-color); }
+    .step-opening .step-number { background: var(--opening-color); }
+    .step-opening .step-label { color: var(--opening-color); }
+    .step-develop .step-number { background: var(--develop-color); }
+    .step-develop .step-label { color: var(--develop-color); }
+    .step-closing .step-number { background: var(--closing-color); }
+    .step-closing .step-label { color: var(--closing-color); }
+
+    .question-text {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.5;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+
+    .intent-text {
       font-size: 0.88rem;
-      margin-top: 12px;
+      color: var(--text-secondary);
+      line-height: 1.65;
     }
-    .error-msg.show { display: block; }
+    .intent-text strong {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
 
-    /* Footer */
+    /* ═══════ Reference ═══════ */
+    .reference {
+      padding: 20px 0;
+      font-size: 0.78rem;
+      color: var(--text-tertiary);
+      line-height: 1.6;
+      border-top: 1px solid var(--border-light);
+      margin-top: 12px;
+      animation: fadeIn 0.6s ease 0.4s forwards;
+      opacity: 0;
+    }
+
+    /* ═══════ Footer ═══════ */
     footer {
       text-align: center;
-      padding: 32px 20px;
-      color: var(--text-muted);
-      font-size: 0.8rem;
-      line-height: 1.6;
+      padding: 48px 24px;
+      background: var(--bg-secondary);
+      margin-top: 32px;
+    }
+    footer p {
+      font-size: 0.78rem;
+      color: var(--text-tertiary);
+      line-height: 1.8;
     }
     footer a {
-      color: var(--primary);
+      color: var(--accent);
       text-decoration: none;
     }
+    footer a:hover { text-decoration: underline; }
 
-    /* Responsive */
-    @media (max-width: 540px) {
-      .hero h1 { font-size: 1.5rem; }
-      .input-card { padding: 20px; }
-      .question-card { padding: 18px; }
+    /* ═══════ Responsive ═══════ */
+    @media (max-width: 520px) {
+      .hero { padding: 56px 20px 40px; }
+      .hero h1 { font-size: 1.8rem; }
+      .hero .subtitle { font-size: 1rem; }
+      .question-card { padding: 22px; }
     }
   </style>
 </head>
@@ -462,22 +409,24 @@
 
   <!-- Hero -->
   <header class="hero">
-    <div class="badge">2022 개정 특수교육 기본 교육과정</div>
-    <h1>질문이 살아있는 수업 디자인</h1>
-    <p class="subtitle">특수교사를 위한 AI 질문 디자인 도구</p>
+    <p class="overline">2022 개정 특수교육 기본 교육과정</p>
+    <h1>질문이 살아있는<br>수업 디자인.</h1>
+    <p class="subtitle">특수교사를 위한 AI 질문 디자인 도구.<br>교과와 주제를 입력하면 4단계 질문을 설계합니다.</p>
   </header>
+
+  <div class="divider"></div>
 
   <main class="container">
 
-    <!-- Input Card -->
-    <section class="input-card" id="inputCard">
-      <h2>📝 수업 정보 입력</h2>
+    <!-- Input Section -->
+    <section class="input-section" id="inputSection">
+      <p class="section-label">수업 정보</p>
 
-      <div class="form-grid">
-        <div class="form-group">
+      <div class="form-row">
+        <div class="field">
           <label for="subject">교과</label>
           <select id="subject">
-            <option value="">교과를 선택하세요</option>
+            <option value="">선택</option>
             <optgroup label="초등 1~2학년군">
               <option value="바른 생활">바른 생활</option>
               <option value="슬기로운 생활">슬기로운 생활</option>
@@ -504,10 +453,10 @@
           </select>
         </div>
 
-        <div class="form-group">
+        <div class="field">
           <label for="grade">학년군</label>
           <select id="grade">
-            <option value="">학년군을 선택하세요</option>
+            <option value="">선택</option>
             <option value="초등학교 1~2학년군">초 1~2학년군</option>
             <option value="초등학교 3~4학년군">초 3~4학년군</option>
             <option value="초등학교 5~6학년군">초 5~6학년군</option>
@@ -515,43 +464,31 @@
             <option value="고등학교 1~3학년군">고 1~3학년군</option>
           </select>
         </div>
+      </div>
 
-        <div class="form-group topic-group">
+      <div class="form-row">
+        <div class="field full">
           <label for="topic">학습 주제</label>
-          <input type="text" id="topic" placeholder="예: 덧셈과 뺄셈, 계절의 변화, 우리 동네 탐험 ..." maxlength="100">
+          <input type="text" id="topic" placeholder="예: 덧셈과 뺄셈, 계절의 변화, 우리 동네 탐험" maxlength="100">
         </div>
       </div>
 
-      <!-- API Key -->
-      <div class="api-section">
-        <div class="api-toggle" id="apiToggle" onclick="toggleApiInput()">
-          <span class="arrow" id="apiArrow">▶</span>
-          <span>Gemini API 키 설정</span>
-        </div>
-        <div class="api-input-wrap" id="apiInputWrap">
-          <input type="password" id="apiKey" placeholder="Google AI Studio API 키를 입력하세요" autocomplete="off">
-          <p class="api-help">
-            API 키는 브라우저에 저장되며 외부로 전송되지 않습니다.<br>
-            <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a>에서 무료로 발급받을 수 있습니다.
-          </p>
-        </div>
-      </div>
-
-      <!-- Generate Button -->
       <button class="generate-btn" id="generateBtn" onclick="generate()">
         <span class="spinner"></span>
-        <span class="btn-text">✨ 질문 디자인 생성하기</span>
-        <span class="btn-loading-text">질문을 설계하고 있습니다...</span>
+        <span class="btn-text">질문 디자인 생성하기</span>
+        <span class="btn-loading-text">질문을 설계하고 있습니다…</span>
       </button>
 
       <div class="error-msg" id="errorMsg"></div>
     </section>
 
+    <div class="divider"></div>
+
     <!-- Result Area -->
     <section class="result-area" id="resultArea">
       <div class="result-header">
-        <h2>📋 질문 디자인 결과</h2>
-        <button class="copy-btn" onclick="copyResult()">📋 복사하기</button>
+        <h2>질문 디자인</h2>
+        <button class="copy-btn" id="copyBtn" onclick="copyResult()">복사하기</button>
       </div>
       <div id="resultContent"></div>
     </section>
@@ -560,45 +497,22 @@
 
   <footer>
     <p>
-      <strong>질문이 살아있는 수업 디자인</strong> — 특수교사를 위한 AI 질문 디자인 도구<br>
+      <strong>질문이 살아있는 수업 디자인</strong><br>
       2022 개정 특수교육 기본 교육과정 (교육부 고시 제2022-34호 [별책 3]) 기반<br>
-      이론적 근거: 김현섭(2015) 「질문이 살아있는 수업」, 김현섭(2025) 「깊이있는 수업」<br><br>
-      Made with ❤️ by <a href="https://juailes.com" target="_blank">엄주익</a>
+      이론적 근거 — 김현섭(2015)「질문이 살아있는 수업」· 김현섭(2025)「깊이있는 수업」<br><br>
+      <a href="https://juailes.com" target="_blank">juailes.com</a>
     </p>
   </footer>
 
   <script>
-    // ═══════════════════════════════════════════
-    // API Key Management
-    // ═══════════════════════════════════════════
-    const STORAGE_KEY = 'qd_gemini_api_key';
+    // ═══════════════════════════════════════
+    // Built-in API Key
+    // ═══════════════════════════════════════
+    const _K = 'AIzaSyAxhTPKzjrlSoARz6Rf-g0BZhHco8-y7_w';
 
-    function toggleApiInput() {
-      const wrap = document.getElementById('apiInputWrap');
-      const arrow = document.getElementById('apiArrow');
-      wrap.classList.toggle('show');
-      arrow.classList.toggle('open');
-    }
-
-    function getSavedApiKey() {
-      return localStorage.getItem(STORAGE_KEY) || '';
-    }
-
-    function saveApiKey(key) {
-      if (key) localStorage.setItem(STORAGE_KEY, key);
-    }
-
-    // Load saved key on init
-    window.addEventListener('DOMContentLoaded', () => {
-      const saved = getSavedApiKey();
-      if (saved) {
-        document.getElementById('apiKey').value = saved;
-      }
-    });
-
-    // ═══════════════════════════════════════════
-    // System Prompt (Special Education Adapted)
-    // ═══════════════════════════════════════════
+    // ═══════════════════════════════════════
+    // System Prompt
+    // ═══════════════════════════════════════
     function buildSystemPrompt() {
       return `당신은 2022 개정 특수교육 기본 교육과정(교육부 고시 제2022-34호 [별책 3])을 기반으로,
 특수교사의 수업 설계를 돕는 **질문 디자인 전문 AI**입니다.
@@ -635,7 +549,7 @@
       "intent": "교육적 의도 설명 (2~3문장)"
     }
   ],
-  "reference": "참고 자료 (항상 아래 2권을 포함): 김현섭(2015) 「질문이 살아있는 수업」, 수업디자인연구소 / 김현섭(2025) 「깊이있는 수업」, 수업디자인연구소"
+  "reference": "참고 자료: 김현섭(2015) 「질문이 살아있는 수업」, 수업디자인연구소 / 김현섭(2025) 「깊이있는 수업」, 수업디자인연구소"
 }
 
 ## 질문 설계 시 반드시 준수할 사항
@@ -665,53 +579,37 @@
 - 교육적 의도는 해당 질문의 교육학적 근거와 특수교육적 배려를 설명`;
     }
 
-    // ═══════════════════════════════════════════
-    // Generate Question Design
-    // ═══════════════════════════════════════════
+    // ═══════════════════════════════════════
+    // Generate
+    // ═══════════════════════════════════════
     async function generate() {
       const subject = document.getElementById('subject').value;
       const grade = document.getElementById('grade').value;
       const topic = document.getElementById('topic').value.trim();
-      const apiKey = document.getElementById('apiKey').value.trim();
       const btn = document.getElementById('generateBtn');
       const errorEl = document.getElementById('errorMsg');
 
-      // Validation
       errorEl.classList.remove('show');
+
       if (!subject || !grade || !topic) {
         showError('교과, 학년군, 학습 주제를 모두 입력해 주세요.');
         return;
       }
-      if (!apiKey) {
-        showError('Gemini API 키를 입력해 주세요. Google AI Studio에서 무료로 발급받을 수 있습니다.');
-        // Open the API section
-        document.getElementById('apiInputWrap').classList.add('show');
-        document.getElementById('apiArrow').classList.add('open');
-        return;
-      }
 
-      // Save API key
-      saveApiKey(apiKey);
-
-      // Loading State
       btn.classList.add('loading');
       btn.disabled = true;
 
       try {
         const userMessage = `[교과: ${subject}], [학년군: ${grade}], [학습 주제: ${topic}]`;
-        
+
         const response = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+          `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${_K}`,
           {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              system_instruction: {
-                parts: [{ text: buildSystemPrompt() }]
-              },
-              contents: [{
-                parts: [{ text: userMessage }]
-              }],
+              system_instruction: { parts: [{ text: buildSystemPrompt() }] },
+              contents: [{ parts: [{ text: userMessage }] }],
               generationConfig: {
                 temperature: 0.8,
                 topP: 0.95,
@@ -724,13 +622,11 @@
 
         if (!response.ok) {
           const errData = await response.json().catch(() => ({}));
-          const msg = errData?.error?.message || `API 오류 (${response.status})`;
-          throw new Error(msg);
+          throw new Error(errData?.error?.message || `오류가 발생했습니다 (${response.status})`);
         }
 
         const data = await response.json();
         const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-        
         if (!text) throw new Error('응답을 생성하지 못했습니다. 다시 시도해 주세요.');
 
         const result = JSON.parse(text);
@@ -738,96 +634,96 @@
 
       } catch (err) {
         console.error(err);
-        if (err.message.includes('API_KEY')) {
-          showError('API 키가 유효하지 않습니다. Google AI Studio에서 다시 확인해 주세요.');
-        } else if (err.message.includes('quota') || err.message.includes('429')) {
-          showError('API 할당량을 초과했습니다. 잠시 후 다시 시도해 주세요.');
-        } else {
-          showError(err.message || '오류가 발생했습니다. 다시 시도해 주세요.');
-        }
+        showError(err.message || '오류가 발생했습니다. 다시 시도해 주세요.');
       } finally {
         btn.classList.remove('loading');
         btn.disabled = false;
       }
     }
 
-    // ═══════════════════════════════════════════
-    // Render Result
-    // ═══════════════════════════════════════════
+    // ═══════════════════════════════════════
+    // Render
+    // ═══════════════════════════════════════
     function renderResult(result) {
       const container = document.getElementById('resultContent');
       const area = document.getElementById('resultArea');
 
-      const labels = [
-        '1. 핵심 질문 (Essential Question)',
-        '2. 출발 질문 (Opening Question)',
-        '3. 전개 질문 (Developmental Question)',
-        '4. 도착 질문 (Closing Question)'
+      const steps = [
+        { num: 1, label: '핵심 질문 · Essential', cls: 'step-essential' },
+        { num: 2, label: '출발 질문 · Opening', cls: 'step-opening' },
+        { num: 3, label: '전개 질문 · Developmental', cls: 'step-develop' },
+        { num: 4, label: '도착 질문 · Closing', cls: 'step-closing' }
       ];
 
       let html = '';
 
       // Intro
-      html += `<div class="intro-card"><p><strong>${result.title || ''}</strong><br><br>${result.intro || ''}</p></div>`;
+      if (result.intro) {
+        html += `<div class="intro-text"><strong>${result.title || ''}</strong><br>${result.intro}</div>`;
+      }
 
-      // Question Cards
-      if (result.questions && result.questions.length) {
+      // Cards
+      if (result.questions?.length) {
         result.questions.forEach((q, i) => {
+          const s = steps[i] || { num: i+1, label: q.type, cls: '' };
           html += `
             <div class="question-card">
-              <div class="card-label">${labels[i] || q.type}</div>
+              <div class="card-step ${s.cls}">
+                <span class="step-number">${s.num}</span>
+                <span class="step-label">${s.label}</span>
+              </div>
               <div class="question-text">"${q.question}"</div>
-              <div class="intent"><strong>교육적 의도:</strong> ${q.intent}</div>
-            </div>
-          `;
+              <div class="intent-text"><strong>교육적 의도</strong> — ${q.intent}</div>
+            </div>`;
         });
       }
 
       // Reference
-      html += `<div class="ref-card"><p>📚 ${result.reference || 'kim 현섭(2015) 「질문이 살아있는 수업」, 수업디자인연구소 / 김현섭(2025) 「깊이있는 수업」, 수업디자인연구소'}</p></div>`;
+      if (result.reference) {
+        html += `<div class="reference">📚 ${result.reference}</div>`;
+      }
 
       container.innerHTML = html;
       area.classList.add('show');
-
-      // Scroll to result
       area.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    // ═══════════════════════════════════════════
-    // Copy to Clipboard
-    // ═══════════════════════════════════════════
+    // ═══════════════════════════════════════
+    // Copy
+    // ═══════════════════════════════════════
     function copyResult() {
       const container = document.getElementById('resultContent');
       const cards = container.querySelectorAll('.question-card');
-      const intro = container.querySelector('.intro-card p');
+      const introEl = container.querySelector('.intro-text');
 
-      let text = intro ? intro.textContent + '\n\n---\n\n' : '';
+      let text = introEl ? introEl.textContent.trim() + '\n\n---\n\n' : '';
 
       cards.forEach(card => {
-        const label = card.querySelector('.card-label').textContent;
+        const label = card.querySelector('.step-label').textContent;
         const question = card.querySelector('.question-text').textContent;
-        const intent = card.querySelector('.intent').textContent;
+        const intent = card.querySelector('.intent-text').textContent;
         text += `### ${label}\n> ${question}\n${intent}\n\n---\n\n`;
       });
 
-      const ref = container.querySelector('.ref-card p');
+      const ref = container.querySelector('.reference');
       if (ref) text += ref.textContent;
 
       navigator.clipboard.writeText(text).then(() => {
-        const btn = document.querySelector('.copy-btn');
-        btn.textContent = '✅ 복사 완료!';
-        setTimeout(() => { btn.textContent = '📋 복사하기'; }, 2000);
+        const btn = document.getElementById('copyBtn');
+        const original = btn.textContent;
+        btn.textContent = '복사 완료 ✓';
+        setTimeout(() => { btn.textContent = original; }, 2000);
       });
     }
 
-    // ═══════════════════════════════════════════
-    // Error Handling
-    // ═══════════════════════════════════════════
+    // ═══════════════════════════════════════
+    // Error
+    // ═══════════════════════════════════════
     function showError(msg) {
       const el = document.getElementById('errorMsg');
       el.textContent = msg;
       el.classList.add('show');
-      setTimeout(() => el.classList.remove('show'), 8000);
+      setTimeout(() => el.classList.remove('show'), 6000);
     }
   </script>
 
