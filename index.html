@@ -52,13 +52,13 @@
       --text-primary: #1d1d1f;
       --text-secondary: #6e6e73;
       --text-tertiary: #86868b;
-      --accent: #0071e3;
-      --accent-hover: #0077ED;
-      --accent-bg: rgba(0,113,227,0.06);
-      --essential-color: #1d1d1f;
-      --opening-color: #0071e3;
-      --develop-color: #34c759;
-      --closing-color: #ff6723;
+      --accent: #FF5A5A;
+      --accent-hover: #ff4040;
+      --accent-bg: rgba(255,90,90,0.06);
+      --essential-color: #FF5A5A;
+      --opening-color: #FF8B5A;
+      --develop-color: #FFA95A;
+      --closing-color: #FFD45A;
       --shadow-subtle: 0 0 0 0.5px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.06);
       --shadow-card: 0 2px 12px rgba(0,0,0,0.06), 0 0 0 0.5px rgba(0,0,0,0.04);
       --shadow-hover: 0 4px 24px rgba(0,0,0,0.08), 0 0 0 0.5px rgba(0,0,0,0.04);
@@ -86,12 +86,16 @@
       background: var(--bg);
     }
     .hero .overline {
-      font-size: 0.75rem;
+      display: inline-block;
+      font-size: 0.72rem;
       font-weight: 600;
-      color: var(--text-tertiary);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 12px;
+      color: var(--accent);
+      border: 1.5px solid var(--accent);
+      border-radius: 980px;
+      padding: 4px 14px;
+      letter-spacing: 0.04em;
+      margin-bottom: 20px;
+      text-transform: none;
     }
     .hero h1 {
       font-size: clamp(2rem, 5vw, 3.2rem);
@@ -217,7 +221,7 @@
     .field input[type="text"]:focus {
       outline: none;
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(0,113,227,0.15);
+      box-shadow: 0 0 0 3px rgba(255,90,90,0.15);
     }
 
     /* ═══════ Generate Button ═══════ */
@@ -375,14 +379,14 @@
     }
 
     /* Step colors */
-    .step-essential .step-number { background: var(--essential-color); }
+    .step-essential .step-number { background: var(--essential-color); color: #fff; }
     .step-essential .step-label { color: var(--essential-color); }
-    .step-opening .step-number { background: var(--opening-color); }
+    .step-opening .step-number { background: var(--opening-color); color: #fff; }
     .step-opening .step-label { color: var(--opening-color); }
-    .step-develop .step-number { background: var(--develop-color); }
+    .step-develop .step-number { background: var(--develop-color); color: #fff; }
     .step-develop .step-label { color: var(--develop-color); }
-    .step-closing .step-number { background: var(--closing-color); }
-    .step-closing .step-label { color: var(--closing-color); }
+    .step-closing .step-number { background: var(--closing-color); color: #1d1d1f; }
+    .step-closing .step-label { color: #c49700; }
 
     .question-text {
       font-size: 1.15rem;
@@ -556,7 +560,8 @@
       <strong>질문이 살아있는 수업 디자인</strong><br>
       2022 개정 특수교육 기본 교육과정 (교육부 고시 제2022-34호 [별책 3]) 기반<br>
       이론적 근거 — 김현섭(2015)「질문이 살아있는 수업」· 김현섭(2025)「깊이있는 수업」<br><br>
-      <a href="https://juailes.com" target="_blank">juailes.com</a>
+      <a href="https://juailes.com" target="_blank">juailes.com</a><br>
+      Copyright 2025. EJIS All Rights Reserved.
     </p>
   </footer>
 
@@ -581,7 +586,7 @@
 아래 JSON 형식으로 **정확히** 출력하세요. JSON 외의 텍스트는 절대 포함하지 마세요.
 
 {
-  "title": "이모지 + [학습 주제] / [대상 학년군]",
+  "title": "[학습 주제] / [대상 학년군]",
   "intro": "짧은 인사와 이번 질문 디자인의 설계 의도 (2~3문장)",
   "questions": [
     {
@@ -736,7 +741,7 @@
 
       // Reference
       if (result.reference) {
-        html += `<div class="reference">📚 ${result.reference}</div>`;
+        html += `<div class="reference">${result.reference}</div>`;
       }
 
       container.innerHTML = html;
