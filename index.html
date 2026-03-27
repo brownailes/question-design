@@ -422,20 +422,38 @@
     /* ═══════ Footer ═══════ */
     footer {
       text-align: center;
-      padding: 48px 24px;
+      padding: 40px 24px;
       background: var(--bg-secondary);
       margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
     }
     footer p {
-      font-size: 0.78rem;
+      font-size: 0.72rem;
       color: var(--text-tertiary);
-      line-height: 1.8;
+      line-height: 1.6;
+      letter-spacing: 0.01em;
     }
-    footer a {
-      color: var(--accent);
+    .feedback-btn {
+      display: inline-block;
+      padding: 9px 22px;
+      border: 1.5px solid var(--border);
+      border-radius: 980px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      font-family: inherit;
+      color: var(--text-secondary);
       text-decoration: none;
+      transition: var(--transition);
+      letter-spacing: -0.01em;
     }
-    footer a:hover { text-decoration: underline; }
+    .feedback-btn:hover {
+      border-color: var(--text-secondary);
+      color: var(--text-primary);
+      background: var(--bg);
+    }
 
     /* ═══════ Responsive ═══════ */
     @media (max-width: 520px) {
@@ -452,26 +470,7 @@
   <header class="hero">
     <p class="overline">2022 개정 특수교육 기본 교육과정</p>
     <h1>질문이 살아있는<br>수업을 만드세요</h1>
-    <p class="subtitle">특수교사를 위한 AI 수업 설계 도우미<br>교과와 학습 주제를 선택하면 4단계 질문을 바로 설계해 드립니다</p>
-    <div class="credit">
-      <div class="credit-item">
-        <span>개발</span>
-        <span class="credit-dot"></span>
-        <strong>엄주익</strong>
-      </div>
-      <div class="credit-sep"></div>
-      <div class="credit-item">
-        <span>이론 출처</span>
-        <span class="credit-dot"></span>
-        <strong>김현섭</strong>
-        <span>「질문이 살아있는 수업」 2015</span>
-      </div>
-      <div class="credit-sep"></div>
-      <div class="credit-item">
-        <strong>김현섭</strong>
-        <span>「깊이있는 수업」 2025</span>
-      </div>
-    </div>
+    <p class="subtitle">특수교사를 위한 수업 설계 도우미<br>교과와 학습 주제를 선택하면 4단계 질문을 바로 설계해 드립니다</p>
   </header>
 
   <div class="divider"></div>
@@ -556,13 +555,8 @@
   </main>
 
   <footer>
-    <p>
-      <strong>질문이 살아있는 수업 디자인</strong><br>
-      2022 개정 특수교육 기본 교육과정 (교육부 고시 제2022-34호 [별책 3]) 기반<br>
-      이론적 근거 — 김현섭(2015)「질문이 살아있는 수업」· 김현섭(2025)「깊이있는 수업」<br><br>
-      <a href="https://juailes.com" target="_blank">juailes.com</a><br>
-      Copyright 2025. EJIS All Rights Reserved.
-    </p>
+    <p>Copyright 2026. EJIS All Rights Reserved.</p>
+    <a class="feedback-btn" href="https://github.com/brownailes/question-design/issues/new?title=%5B%EA%B0%9C%EC%84%A0+%EC%9A%94%EC%B2%AD%5D&body=%23%23+%EA%B0%9C%EC%84%A0+%EC%9A%94%EC%B2%AD+%EB%82%B4%EC%9A%A9%0A%0A" target="_blank">개선 요청하기</a>
   </footer>
 
   <script>
@@ -739,10 +733,7 @@
         });
       }
 
-      // Reference
-      if (result.reference) {
-        html += `<div class="reference">${result.reference}</div>`;
-      }
+      // Reference — hidden per design
 
       container.innerHTML = html;
       area.classList.add('show');
@@ -766,8 +757,7 @@
         text += `### ${label}\n> ${question}\n${intent}\n\n---\n\n`;
       });
 
-      const ref = container.querySelector('.reference');
-      if (ref) text += ref.textContent;
+
 
       navigator.clipboard.writeText(text).then(() => {
         const btn = document.getElementById('copyBtn');
