@@ -1182,7 +1182,7 @@
               generationConfig: {
                 temperature: 0.8,
                 topP: 0.95,
-                maxOutputTokens: 2048,
+                maxOutputTokens: 4096,
                 responseMimeType: "application/json"
               }
             })
@@ -1201,7 +1201,34 @@
         const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
         if (!text) throw new Error('응답을 생성하지 못했습니다. 다시 시도해 주세요.');
 
-        const result = JSON.parse(text);
+        let cleaned = text.trim();
+        // Strip markdown code fences if present
+        if (cleaned.startsWith('```')) {
+          cleaned = cleaned.replace(/^```(?:json)?\s*/i, '').replace(/\s*```\s*$/, '');
+        }
+        // Attempt to repair truncated JSON
+        let result;
+        try {
+          result = JSON.parse(cleaned);
+        } catch (parseErr) {
+          // Try adding missing closing brackets
+          let repaired = cleaned;
+          const opens = (repaired.match(/\{/g) || []).length;
+          const closes = (repaired.match(/\}/g) || []).length;
+          const openBrackets = (repaired.match(/\[/g) || []).length;
+          const closeBrackets = (repaired.match(/\]/g) || []).length;
+          // Remove trailing comma or incomplete value
+          repaired = repaired.replace(/,\s*$/, '');
+          // Remove unterminated string (remove last incomplete key-value)
+          repaired = repaired.replace(/,?\s*"[^"]*$/, '');
+          for (let i = 0; i < openBrackets - closeBrackets; i++) repaired += ']';
+          for (let i = 0; i < opens - closes; i++) repaired += '}';
+          try {
+            result = JSON.parse(repaired);
+          } catch (e2) {
+            throw new Error('AI 응답을 처리하지 못했어요. 다시 시도해 주세요.');
+          }
+        }
         renderResult(result);
 
       } catch (err) {
