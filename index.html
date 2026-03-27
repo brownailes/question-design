@@ -420,59 +420,80 @@
     /* ═══════ Result Area ═══════ */
     .result-area {
       display: none;
-      padding: 48px 0 32px;
+      padding: 56px 0 40px;
     }
     .result-area.show { display: block; }
 
     .result-header {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      margin-bottom: 28px;
+      align-items: flex-end;
+      margin-bottom: 32px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-light);
     }
-    .result-header h2 {
-      font-size: 1.4rem;
+    .result-header-left h2 {
+      font-size: 1.5rem;
       font-weight: 700;
       letter-spacing: -0.03em;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .result-header-left .result-meta {
+      font-size: 0.78rem;
+      color: var(--text-tertiary);
+      font-weight: 400;
     }
     .copy-btn {
-      padding: 7px 16px;
-      background: transparent;
-      border: 1px solid var(--border);
+      padding: 8px 18px;
+      background: var(--text-primary);
+      border: none;
       border-radius: 980px;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 500;
       font-family: inherit;
       cursor: pointer;
-      color: var(--accent);
+      color: var(--bg);
       transition: var(--transition);
+      letter-spacing: -0.01em;
     }
     .copy-btn:hover {
-      background: var(--accent-bg);
+      opacity: 0.8;
+      transform: scale(1.02);
     }
 
     /* ═══════ Intro Text ═══════ */
     .intro-text {
-      padding: 24px 0;
-      font-size: 1rem;
+      background: linear-gradient(135deg, rgba(210,59,62,0.04) 0%, rgba(210,59,62,0.01) 100%);
+      border: 1px solid rgba(210,59,62,0.08);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      margin-bottom: 24px;
+      font-size: 0.95rem;
       color: var(--text-secondary);
-      line-height: 1.7;
+      line-height: 1.75;
       animation: fadeIn 0.5s ease forwards;
     }
     .intro-text strong {
       color: var(--text-primary);
       font-weight: 600;
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1rem;
     }
 
     /* ═══════ Question Cards ═══════ */
     .question-card {
-      background: var(--bg-secondary);
+      background: var(--bg);
+      border: 1px solid var(--border-light);
+      border-left: 3px solid transparent;
       border-radius: var(--radius-lg);
-      padding: 28px;
-      margin-bottom: 16px;
-      transition: var(--transition);
+      padding: 28px 28px 24px;
+      margin-bottom: 14px;
+      transition: all 0.3s cubic-bezier(.4,0,.2,1);
       animation: fadeInUp 0.5s ease forwards;
       opacity: 0;
+      position: relative;
     }
     .question-card:nth-child(2) { animation-delay: 0.08s; }
     .question-card:nth-child(3) { animation-delay: 0.16s; }
@@ -480,9 +501,14 @@
     .question-card:nth-child(5) { animation-delay: 0.32s; }
 
     .question-card:hover {
-      box-shadow: var(--shadow-hover);
-      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+      transform: translateY(-3px);
+      border-color: var(--border);
     }
+    .question-card.card-essential { border-left-color: var(--essential-color); }
+    .question-card.card-opening { border-left-color: var(--opening-color); }
+    .question-card.card-develop { border-left-color: var(--develop-color); }
+    .question-card.card-closing { border-left-color: var(--closing-color); }
 
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(16px); }
@@ -496,53 +522,63 @@
     .card-step {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      margin-bottom: 14px;
+      gap: 10px;
+      margin-bottom: 16px;
     }
     .card-step .step-number {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.72rem;
+      font-size: 0.75rem;
       font-weight: 700;
       color: #fff;
     }
     .card-step .step-label {
-      font-size: 0.78rem;
+      font-size: 0.82rem;
       font-weight: 600;
-      letter-spacing: 0.02em;
+      letter-spacing: -0.01em;
     }
 
     /* Step colors */
-    .step-essential .step-number { background: var(--essential-color); color: #fff; }
+    .step-essential .step-number { background: var(--essential-color); }
     .step-essential .step-label { color: var(--essential-color); }
-    .step-opening .step-number { background: var(--opening-color); color: #fff; }
+    .step-opening .step-number { background: var(--opening-color); }
     .step-opening .step-label { color: var(--opening-color); }
-    .step-develop .step-number { background: var(--develop-color); color: #fff; }
+    .step-develop .step-number { background: var(--develop-color); }
     .step-develop .step-label { color: var(--develop-color); }
-    .step-closing .step-number { background: var(--closing-color); color: #1d1d1f; }
+    .step-closing .step-number { background: var(--closing-color); }
     .step-closing .step-label { color: #c49700; }
 
     .question-text {
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       font-weight: 600;
       color: var(--text-primary);
-      line-height: 1.5;
-      letter-spacing: -0.02em;
-      margin-bottom: 14px;
+      line-height: 1.55;
+      letter-spacing: -0.025em;
+      margin-bottom: 16px;
+      padding-left: 2px;
     }
 
+    .intent-section {
+      background: var(--bg-secondary);
+      border-radius: 10px;
+      padding: 16px 20px;
+    }
+    .intent-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+    }
     .intent-text {
       font-size: 0.88rem;
       color: var(--text-secondary);
-      line-height: 1.65;
-    }
-    .intent-text strong {
-      font-weight: 600;
-      color: var(--text-primary);
+      line-height: 1.7;
     }
 
     /* ═══════ Reference ═══════ */
@@ -950,8 +986,11 @@
     <!-- Result Area -->
     <section class="result-area" id="resultArea">
       <div class="result-header">
-        <h2>질문 디자인</h2>
-        <button class="copy-btn" id="copyBtn" onclick="copyResult()">복사하기</button>
+        <div class="result-header-left">
+          <h2>질문 디자인 결과</h2>
+          <span class="result-meta" id="resultMeta"></span>
+        </div>
+        <button class="copy-btn" id="copyBtn" onclick="copyResult()">📋 복사하기</button>
       </div>
       <div id="resultContent"></div>
     </section>
@@ -1191,22 +1230,33 @@
       let html = '';
 
       // Intro
+      // Result meta
+      const metaEl = document.getElementById('resultMeta');
+      const gradeEl = document.getElementById('grade');
+      const gradeName = gradeEl.options[gradeEl.selectedIndex]?.text || '';
+      metaEl.textContent = `${gradeName} · ${result.title || ''}`;
+
       if (result.intro) {
-        html += `<div class="intro-text"><strong>${result.title || ''}</strong><br>${result.intro}</div>`;
+        html += `<div class="intro-text"><strong>${result.title || ''}</strong>${result.intro}</div>`;
       }
 
       // Cards
+      const cardCls = ['card-essential', 'card-opening', 'card-develop', 'card-closing'];
       if (result.questions?.length) {
         result.questions.forEach((q, i) => {
           const s = steps[i] || { num: i+1, label: q.type, cls: '' };
+          const cc = cardCls[i] || '';
           html += `
-            <div class="question-card">
+            <div class="question-card ${cc}">
               <div class="card-step ${s.cls}">
                 <span class="step-number">${s.num}</span>
                 <span class="step-label">${s.label}</span>
               </div>
-              <div class="question-text">"${q.question}"</div>
-              <div class="intent-text"><strong>교육적 의도</strong> — ${q.intent}</div>
+              <div class="question-text">${q.question}</div>
+              <div class="intent-section">
+                <div class="intent-label">교육적 의도</div>
+                <div class="intent-text">${q.intent}</div>
+              </div>
             </div>`;
         });
       }
