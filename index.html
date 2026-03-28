@@ -472,6 +472,7 @@
       font-size: 0.95rem;
       color: var(--text-secondary);
       line-height: 1.75;
+      text-align: justify;
       animation: fadeIn 0.5s ease forwards;
     }
     .intro-text strong {
@@ -579,6 +580,7 @@
       font-size: 0.88rem;
       color: var(--text-secondary);
       line-height: 1.7;
+      text-align: justify;
     }
 
     /* ═══════ Reference ═══════ */
@@ -1264,7 +1266,8 @@
       metaEl.textContent = `${gradeName} · ${result.title || ''}`;
 
       if (result.intro) {
-        html += `<div class="intro-text"><strong>${result.title || ''}</strong>${result.intro}</div>`;
+        const introFormatted = result.intro.replace('안녕하세요, 선생님!', '안녕하세요, 선생님!<br>');
+        html += `<div class="intro-text"><strong>${result.title || ''}</strong>${introFormatted}</div>`;
       }
 
       // Cards
