@@ -1266,7 +1266,7 @@
       metaEl.textContent = `${gradeName} · ${result.title || ''}`;
 
       if (result.intro) {
-        const introFormatted = result.intro.replace('안녕하세요, 선생님!', '안녕하세요, 선생님!<br>');
+        const introFormatted = result.intro.replace(/^([^!]+!)/, '$1<br>');
         html += `<div class="intro-text"><strong>${result.title || ''}</strong>${introFormatted}</div>`;
       }
 
