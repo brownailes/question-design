@@ -9,34 +9,37 @@
 ```javascript
 function doPost(e) {
   try {
-    var params = e.postData.contents;
-    var parsed = {};
-    if (params) {
-      params.split('&').forEach(function(pair) {
+    // 1. Google Apps Script 기본 파서 시도 (빠르고 안전)
+    var p = e.parameter || {};
+    
+    // 2. 만약 e.parameter가 비었다면, 원시 데이터 직접 파싱 (안전장치)
+    if (!p.type && !p.message && e.postData && e.postData.contents) {
+      e.postData.contents.split('&').forEach(function(pair) {
+        if (!pair) return;
         var parts = pair.split('=');
-        parsed[decodeURIComponent(parts[0])] = decodeURIComponent((parts[1] || '').replace(/\+/g, ' '));
+        p[decodeURIComponent(parts[0])] = decodeURIComponent((parts[1] || '').replace(/\+/g, ' '));
       });
     }
 
     var ss = SpreadsheetApp.openById('17MSca2ywty8JLxYxOp0z6w3Tflx2BDamPokKJrIGXGg');
     var now = new Date();
 
-    if (parsed['type'] === 'log') {
-      // 1. 수업 디자인 생성 로그 처리 (Logs 탭이 없으면 생성)
+    if (p.type === 'log') {
+      // 수업 디자인 생성 로그 처리 (Logs 탭 없으면 생성)
       var logSheet = ss.getSheetByName('Logs') || ss.insertSheet('Logs');
       logSheet.appendRow([
         now,
-        parsed['grade'] || '',
-        parsed['subject'] || '',
-        parsed['topic'] || ''
+        p.grade || '',
+        p.subject || '',
+        p.topic || ''
       ]);
     } else {
-      // 2. 기존 사용자 피드백 의견 처리 (기본 시트 또는 Feedback 탭)
+      // 기존 사용자 피드백 의견 처리 (기본 시트 또는 Feedback 탭)
       var feedbackSheet = ss.getSheetByName('Feedback') || ss.getSheets()[0];
       feedbackSheet.appendRow([
         now,
-        parsed['message'] || '',
-        parsed['timestamp'] || ''
+        p.message || '',
+        p.timestamp || ''
       ]);
     }
 
