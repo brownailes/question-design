@@ -1173,6 +1173,21 @@
         const gradeLabel = grade === 'all' ? '전체 학년군' : grade;
         const userMessage = `[교과: ${subject}], [학년군: ${gradeLabel}]${topic ? `, [학습 주제: ${topic}]` : ''}`;
 
+        // ── 사용 로그 백그라운드 전송 (성공 상관없이 진행) ──
+        try {
+          fetch(APPS_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({
+              type: 'log',
+              grade: gradeLabel,
+              subject: subject,
+              topic: topic
+            }).toString()
+          });
+        } catch (_) {}
+
         const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${_K}`;
         const response = await fetch(url,
           {
